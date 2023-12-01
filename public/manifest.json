@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Hive Alert",
+  "version": "0.1.5",
+  "description": "Hive Alert is a browser extension that shows you notifications from hive blockchain related to your account",
+  "icons": {
+    "16": "icons/hive_16.png",
+    "32": "icons/hive_32.png",
+    "48": "icons/hive_48.png",
+    "128": "icons/hive_128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+	"type": "module"
+  },
+  "action": {
+    "default_title": "Hive Alert",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+	"storage",
+	"notifications",
+	"background"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+		"https://www.googleapis.com/",
+		"https://firebase.googleapis.com/"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ]
+}
